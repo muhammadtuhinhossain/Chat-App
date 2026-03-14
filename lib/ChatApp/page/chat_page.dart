@@ -111,7 +111,10 @@ class _ChatPageState extends State<ChatPage> {
               style: const TextStyle(fontSize: 12, color: Colors.grey),
             ),
             const SizedBox(height: 5),
-            ChatBubble(message: data['message']),
+            ChatBubble(
+              message: data['message'],
+              isCurrentUser: data['senderId'] == _firebaseAuth.currentUser!.uid,
+            ),
           ],
         ),
       ),
@@ -127,12 +130,8 @@ class _ChatPageState extends State<ChatPage> {
             child: TextField(
               controller: _messageController,
               obscureText: false,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Enter message',
-                hintStyle: TextStyle(
-                  color: Colors.grey[400],
-                  fontSize: 16,
-                ),
               ),
             ),
           ),
