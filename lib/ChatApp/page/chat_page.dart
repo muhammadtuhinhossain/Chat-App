@@ -130,8 +130,12 @@ class _ChatPageState extends State<ChatPage> {
             child: TextField(
               controller: _messageController,
               obscureText: false,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Enter message',
+                hintStyle: TextStyle(
+                  color: Colors.grey[400],
+                  fontSize: 16,
+                ),
               ),
             ),
           ),
