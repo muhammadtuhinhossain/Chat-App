@@ -4,11 +4,10 @@ import 'package:flutter/foundation.dart';
 import '../../model/message.dart';
 
 class ChatService extends ChangeNotifier {
-  // get instance of auth and firestore
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // SEND MESSAGE
+  // send message
   Future<void> sendMessage(String receiverId, String message) async {
     // get current user info
     final String currentUserId = _firebaseAuth.currentUser!.uid;
@@ -25,7 +24,7 @@ class ChatService extends ChangeNotifier {
       timestamp: timestamp,
     );
 
-    // construct chat room id from current user id and receiver id (sorted to ensure uniqueness)
+    //id from current user id and receiver id ,sorted to ensure uniqueness
     List<String> ids = [currentUserId, receiverId];
     ids.sort();
     String chatRoomId = ids.join("_");
@@ -38,9 +37,8 @@ class ChatService extends ChangeNotifier {
         .add(newMessage.toMap());
   }
 
-  // GET MESSAGE
+  // get message
   Stream<QuerySnapshot> getMessage(String userId, String otherUserId) {
-    // construct chat room id from user ids (sorted)
     List<String> ids = [userId, otherUserId];
     ids.sort();
     String chatRoomId = ids.join("_");

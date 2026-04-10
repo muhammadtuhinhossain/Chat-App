@@ -63,7 +63,6 @@ class _HomePageState extends State<HomePage> {
       return ListTile(
         title: Text(data['email']),
         onTap: (){
-          //pass the clicked users to the chat page
           Navigator.push(context,
             MaterialPageRoute(builder: (context)=> ChatPage(receiverUserEmail: data['email'], receiverUserID: data['uid'],),
             ),
@@ -71,7 +70,6 @@ class _HomePageState extends State<HomePage> {
         },
       );
     }else{
-      // return empty container
       return Container();
     }
   }
